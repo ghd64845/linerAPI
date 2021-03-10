@@ -5,10 +5,10 @@ module.exports = async (req, res, next) => {
   const { highlightId, colorHex, text } = req.body;
 
   try {
-    if (!text || !colorHex) res.status(400).json({ message: 'Error' });
+    if (!text && !colorHex) res.status(400).json({ message: 'Error' });
     await Highlight.update(
       { colorHex, text },
-      { where: { id: highlightId, userId: id }, returning: true },
+      { where: { id: highlightId, userId: id } },
     );
     const checkHighlight = await Highlight.findOne({
       where: { id: highlightId },
