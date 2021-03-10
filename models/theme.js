@@ -1,15 +1,14 @@
 module.exports = (sequelize, DataTypes) =>
   sequelize.define(
-    'color',
+    'theme',
     {
-      colorHex: {
-        type: DataTypes.STRING(7),
+      themeId: {
+        type: DataTypes.INTEGER(),
         allowNull: false,
-        unique: true,
       },
     },
     {
-      pranoid: true,
+      paranoid: true,
       timestamps: false,
     },
   );

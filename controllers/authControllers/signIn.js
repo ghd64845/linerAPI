@@ -4,19 +4,19 @@ const { jwtIssuance } = require('../../lib/jwtMiddleware');
 
 module.exports = async (req, res, next) => {
   const { email, password } = req.body;
-  const { JWT_SECRET } = process.env;
 
   if (!email || !password)
     res.status(400).end('이메일과 비밀번호를 입력해주세요');
 
   try {
     const exUser = await User.findOne({ where: { email } });
+    console.log(exUser);
     if (exUser) {
       const result = await bcrypt.compare(password, exUser.password);
       if (result) {
-        const { userId, email, nick } = exUser;
-        const token = jwtIssuance(userId, email, nick);
-
+        const { id, email, nick } = exUser;
+        const token = jwtIssuance(id, email, nick);
+        console.log(token);
         res
           .status(200)
           .cookie('accessToken', token, {

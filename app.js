@@ -7,6 +7,7 @@ const logger = require('morgan');
 
 const { sequelize } = require('./models');
 const authRouter = require('./routes/auth');
+const highlightRouter = require('./routes/highlight');
 
 const app = express();
 sequelize.sync();
@@ -37,6 +38,7 @@ app.use(
 );
 
 app.use('/auth', authRouter);
+app.use('/highlight', highlightRouter);
 
 app.use((req, res, next) => {
   const err = new Error('Not Found');
