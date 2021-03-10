@@ -2,11 +2,6 @@ module.exports = (sequelize, DataTypes) =>
   sequelize.define(
     'user',
     {
-      userId: {
-        type: DataTypes.INTEGER(),
-        primaryKey: true,
-        autoIncrement: true,
-      },
       email: {
         type: DataTypes.STRING(50),
         allowNull: false,
@@ -20,13 +15,9 @@ module.exports = (sequelize, DataTypes) =>
         type: DataTypes.STRING(15),
         allowNull: false,
       },
-      themeId: {
-        type: DataTypes.INTEGER(),
-        allowNull: true,
-      },
     },
     {
-      pranoid: false,
+      pranoid: true,
       timestamps: true,
     },
   );
