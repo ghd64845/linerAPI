@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const { sequelize } = require('./models');
+const authRouter = require('./routes/auth');
 
 const app = express();
 sequelize.sync();
@@ -34,6 +35,20 @@ app.use(
     },
   }),
 );
+
+app.use('/auth', authRouter);
+
+app.use((req, res, next) => {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+app.use((err, req, res) => {
+  res.locals.message = err.message;
+  res.locals.error = process.env.NODE_ENV === 'development' ? err : {};
+  res.status(err.status || 500);
+  res.end();
+});
 
 app.listen(PORT, () => {
   console.log(`linten to port ${PORT}`);
