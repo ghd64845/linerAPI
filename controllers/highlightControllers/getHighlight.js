@@ -12,14 +12,18 @@ module.exports = async (req, res, next) => {
       });
     }
     const highlightInfo = await Highlight.findAll({
-      where: pageId ? { pageId } : { pageId: pageInfo.dataValues.highlightId },
+      where: pageId
+        ? { pageId, userId: id }
+        : { pageId: pageInfo.dataValues.highlightId, userId: id },
       attributes: [
         ['id', 'highlightId'],
         'userId',
         'pageId',
         'colorHex',
         'text',
+        'updatedAt',
       ],
+      order: [['updatedAt', 'DESC']],
     });
     res.status(200).json(highlightInfo);
   } catch (err) {

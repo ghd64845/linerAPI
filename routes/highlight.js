@@ -11,5 +11,10 @@ router.post(
   jwtAuthorization,
   highlightControllers.getHighlight,
 );
+router.get(
+  '/highlightinfo',
+  jwtAuthorization,
+  highlightControllers.highlightInfoAndPage,
+);
 
 module.exports = router;
