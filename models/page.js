@@ -5,7 +5,6 @@ module.exports = (sequelize, DataTypes) =>
       pageUrl: {
         type: DataTypes.STRING(255),
         allowNull: false,
-        unique: true,
       },
     },
     {

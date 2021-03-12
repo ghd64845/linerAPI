@@ -4,15 +4,17 @@ module.exports = async (req, res, next) => {
   const { id } = req.user;
   const { pageUrl, colorHex, text } = req.body;
   try {
-    const [page] = await Page.findOrCreate({ where: { pageUrl } });
+    const [page] = await Page.findOrCreate({
+      where: { pageUrl },
+      defaults: { userId: id, pageUrl },
+    });
 
     const insertHighlight = await Highlight.create({
-      userId: id,
+      userId: page.userId,
       pageId: page.id,
       colorHex,
       text,
     });
-
     const result = {
       highlightId: insertHighlight.id,
       userId: insertHighlight.userId,
