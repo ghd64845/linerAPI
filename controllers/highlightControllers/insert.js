@@ -25,6 +25,7 @@ module.exports = async (req, res, next) => {
         'text',
       ],
     });
+
     res.status(201).json(result);
   } catch (err) {
     next(err);
