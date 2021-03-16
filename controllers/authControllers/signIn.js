@@ -16,7 +16,7 @@ module.exports = async (req, res, next) => {
       if (result) {
         const { id, email, nick } = exUser;
         const token = jwtIssuance(id, email, nick);
-        console.log(token);
+
         res
           .status(200)
           .cookie('accessToken', token, {
