@@ -1,4 +1,4 @@
-const { Highlight } = require('../../models');
+const { Highlight, pa } = require('../../models');
 
 module.exports = async (req, res, next) => {
   const { id } = req.user;
@@ -21,7 +21,7 @@ module.exports = async (req, res, next) => {
       ],
     });
 
-    res.status(200).json(checkHighlight);
+    await res.status(200).json(checkHighlight);
   } catch (err) {
     next(err);
   }

@@ -10,10 +10,10 @@ module.exports = {
     host: '127.0.0.1',
     dialect: 'mysql',
     timezone: '+09:00',
-    pool: {
-      max: 20,
-      min: 5,
-      idle: 60000,
+    dialectOptions: {
+      charset: 'utf8mb4',
+      dateStrings: true,
+      typeCast: true,
     },
   },
   test: {

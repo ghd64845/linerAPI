@@ -1,4 +1,5 @@
 exports.insert = require('./insert');
 exports.update = require('./update');
 exports.getHighlight = require('./getHighlight');
-exports.highlightInfoAndPage = require('./HighlightInfoAndPage');
+exports.highlightInfoAndPage = require('./highlightInfoAndPage');
+exports.deleteHighlight = require('./deleteHighlight');
