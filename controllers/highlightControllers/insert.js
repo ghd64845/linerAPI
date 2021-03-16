@@ -17,13 +17,6 @@ module.exports = async (req, res, next) => {
 
     console.log(insertHighlight);
 
-    // const result = {
-    //   highlightId: insertHighlight.id,
-    //   userId: insertHighlight.userId,
-    //   pageId: insertHighlight.pageId,
-    //   colorHex: insertHighlight.colorHex,
-    //   text: insertHighlight.text,
-    // };
     const result = await Highlight.findOne({
       where: { id: insertHighlight.id },
       attributes: [
@@ -34,6 +27,7 @@ module.exports = async (req, res, next) => {
         'text',
       ],
     });
+
     res.status(201).json(result);
   } catch (err) {
     next(err);

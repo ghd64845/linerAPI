@@ -16,7 +16,7 @@ module.exports = async (req, res, next) => {
     if (!created) {
       res.status(400).json({ message: '이미 가입된 회원입니다. ' });
     } else {
-      res.status(201).json({ message: '가입이 완료되었습니다.' });
+      res.status(201).json({ message: 'SighUp Success' });
     }
   } catch (err) {
     next(err);
