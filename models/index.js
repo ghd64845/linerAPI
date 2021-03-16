@@ -23,9 +23,9 @@ db.Highlight = require('./highlight')(sequelize, Sequelize);
 db.Page = require('./page')(sequelize, Sequelize);
 
 db.Theme.hasOne(db.User);
-db.User.belongsTo(db.Theme);
-db.Color.hasMany(db.Theme);
-db.Theme.belongsTo(db.Color);
+db.User.belongsTo(db.Theme, { foreignKey: { defaultValue: 1 } });
+db.Theme.hasMany(db.Color);
+db.Color.belongsTo(db.Theme);
 db.User.hasMany(db.Page);
 db.Page.belongsTo(db.User);
 db.Page.hasMany(db.Highlight);

@@ -16,5 +16,10 @@ router.get(
   jwtAuthorization,
   highlightControllers.highlightInfoAndPage,
 );
+router.delete(
+  '/deletehighlight',
+  jwtAuthorization,
+  highlightControllers.deleteHighlight,
+);
 
 module.exports = router;

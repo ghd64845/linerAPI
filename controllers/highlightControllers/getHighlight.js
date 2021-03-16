@@ -3,6 +3,7 @@ const { Highlight, Page } = require('../../models');
 module.exports = async (req, res, next) => {
   const { id } = req.user;
   const { pageId, pageUrl } = req.body;
+
   try {
     let pageInfo;
     if (!pageId) {
@@ -11,6 +12,7 @@ module.exports = async (req, res, next) => {
         attributes: [['id', 'highlightId']],
       });
     }
+
     const highlightInfo = await Highlight.findAll({
       where: pageId
         ? { pageId, userId: id }
@@ -21,10 +23,10 @@ module.exports = async (req, res, next) => {
         'pageId',
         'colorHex',
         'text',
-        'updatedAt',
       ],
       order: [['updatedAt', 'DESC']],
     });
+
     res.status(200).json(highlightInfo);
   } catch (err) {
     next(err);

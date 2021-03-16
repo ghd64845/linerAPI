@@ -5,8 +5,7 @@ module.exports = async (req, res, next) => {
   const { pageUrl, colorHex, text } = req.body;
   try {
     const [page] = await Page.findOrCreate({
-      where: { pageUrl },
-      defaults: { userId: id, pageUrl },
+      where: { pageUrl, userId: id },
     });
 
     const insertHighlight = await Highlight.create({
@@ -15,14 +14,26 @@ module.exports = async (req, res, next) => {
       colorHex,
       text,
     });
-    const result = {
-      highlightId: insertHighlight.id,
-      userId: insertHighlight.userId,
-      pageId: insertHighlight.pageId,
-      colorHex: insertHighlight.colorHex,
-      text: insertHighlight.text,
-    };
 
+    console.log(insertHighlight);
+
+    // const result = {
+    //   highlightId: insertHighlight.id,
+    //   userId: insertHighlight.userId,
+    //   pageId: insertHighlight.pageId,
+    //   colorHex: insertHighlight.colorHex,
+    //   text: insertHighlight.text,
+    // };
+    const result = await Highlight.findOne({
+      where: { id: insertHighlight.id },
+      attributes: [
+        ['id', 'highlightId'],
+        'userId',
+        'pageId',
+        'colorHex',
+        'text',
+      ],
+    });
     res.status(201).json(result);
   } catch (err) {
     next(err);
