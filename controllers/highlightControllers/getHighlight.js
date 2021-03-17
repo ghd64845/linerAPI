@@ -8,7 +8,7 @@ module.exports = async (req, res, next) => {
     let pageInfo;
     if (!pageId) {
       pageInfo = await Page.findOne({
-        where: { pageUrl },
+        where: { pageUrl, userId: id },
         attributes: [['id', 'highlightId']],
       });
     }
