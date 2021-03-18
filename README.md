@@ -4,10 +4,10 @@
 
 ![db모델링](https://www.notion.so/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fef8810ee-6d5b-4c11-a069-87f7b6a288a6%2F__DB.png?table=block&id=a2690738-b470-4555-b703-73fa9222090d&width=3490&userId=00bcb7e1-ceee-442b-927c-0f939fb6f8c0&cache=v2)
 
-DB모델링은 유저의 정보를 저장는 User테이블과 user가 선택한 테마의 정보를 담기 위한 Theme테이블 그리고 Theme별로 color를 저장하기 위해 Color테이블, page의 정보를 담기위한 Page테이블과, 유저가 page에 하이라이팅한 정보를 담기위한 Highlight테이블 총 5개의 테이블을 만들었습니다.
+DB 모델링은 유저의 정보를 저장하는 User 테이블과 user가 선택한 테마의 정보를 담기 위한 Theme 테이블 그리고 theme 별로 color를 저장하기 위해 Color 테이블, page의 정보를 담기 위한 Page 테이블과, 유저가 page에 하이라이팅한 정보를 담기 위한 Highlight 테이블 총 5개의 테이블을 만들었습니다.
 
-한명의 유저는 여러 page에 하이라이트할 수 있기 때문에 User테이블과 Page테이블은 ```1 : N```관계로 설정을 했습니다. 그리고 page안에는 여러 개의 하이라이트가 존재하기 떄문에 Page테이블과 Highlight테이블의 관계를 ```1 : N```관계로 설정하여 pageId를 통해 해당 페이지에 존재하는 하이라이트 정보를 가져올 수 있도록 설계했습니다.
-User는 하나의 테마를 설정하고 theme에 해당하는 color를 사용할 수 있기 때문에 User테이블과 Theme테이블은 ```1 : 1```관게를 설정하여 user에게 themeId를 통해 사용할 수 있는 color를 보여줄 수 있도록 했습니다. 그리고 Color테이블을 만들어 themeId를 통해 theme별로 colorHex를 관리할 수 있도록 설계했습니다.
+한 명의 유저는 여러 page에 하이라이트 할 수 있기 때문에 User 테이블과 Page 테이블은 ```1 : N``` 관계로 설정을 했습니다. 그리고 page 안에는 여러 개의 하이라이트가 존재하기 때문에 Page 테이블과 Highlight 테이블의 관계를 ```1 : N``` 관계로 설정하여 pageId를 통해 해당 페이지에 존재하는 하이라이트 정보를 가져올 수 있도록 설계했습니다.
+User는 하나의 테마를 설정하고 theme에 해당하는 color를 사용할 수 있기 때문에 User 테이블과 Theme 테이블은 ```1 : 1``` 관계를 설정하여 user에게 themeId를 통해 사용할 수 있는 color를 보여줄 수 있도록 했습니다. 그리고 Color 테이블을 만들어 themeId를 통해 theme 별로 colorHex를 관리할 수 있도록 설계했습니다.
 
 ### API 문서
 
