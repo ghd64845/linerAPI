@@ -4,7 +4,7 @@ const { jwtAuthorization } = require('../lib/jwtMiddleware');
 
 const router = express.Router();
 
-router.post('/insert', jwtAuthorization, highlightControllers.insert);
+router.post('/create', jwtAuthorization, highlightControllers.insert);
 router.patch('/update', jwtAuthorization, highlightControllers.update);
 router.post(
   '/gethighlight',
