@@ -45,7 +45,7 @@ module.exports = async (req, res, next) => {
     await Highlight.bulkCreate(colorHexArray, {
       updateOnDuplicate: ['id', 'colorHex'],
     });
-    res.status(200).json(colorHexArray);
+    res.status(200).json('200 OK');
   } catch (err) {
     next(err);
   }
